@@ -1,12 +1,13 @@
-import { dataService } from './formJson';
+// import { dataService } from './formJson';
+import Layout from './theme/layout';
 import './App.css';
 
 function App() {
-  const json = JSON.stringify(dataService.getForm(), null, 2222)
+  // const json = JSON.stringify(dataService.getForm(), null, 2222)
   return (
     <div className="App">
-      Hello Json Builder <br /> <br /><hr></hr>
-      <pre>{json}</pre>
+      <Layout />
+      {/* <pre>{json}</pre> */}
     </div>
   );
 }

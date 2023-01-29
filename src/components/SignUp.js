@@ -17,8 +17,8 @@ const Copyright = (props) => {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
+      <Link color="inherit" href="https://www.sudhanshush.in/">
+        Sudhanshu Shrivastava
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -28,15 +28,20 @@ const Copyright = (props) => {
 
 const theme = createTheme();
 
-const SignUp = () => {
+const SignUp = ({ handleSignIn }) => {
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     console.log({
+      firstName: data.get('firstName'),
+      lastName: data.get('lastName'),
       email: data.get('email'),
       password: data.get('password'),
     });
   };
+
+  const userLogin = () => handleSignIn(true)
 
   return (
     <ThemeProvider theme={theme}>
@@ -117,7 +122,7 @@ const SignUp = () => {
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link href="#" variant="body2">
+                <Link href="#" variant="body2" onClick={userLogin}>
                   Already have an account? Sign in
                 </Link>
               </Grid>

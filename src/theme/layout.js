@@ -2,7 +2,6 @@ import React, { useState, useCallback } from 'react'
 import Header from '../components/Header'
 import SignUp from '../components/SignUp'
 import SignIn from '../components/SignIn'
-import Page from '../container/page'
 import { Loader } from '../static/images/imgStore'
 
 const Layout = () => {
@@ -35,7 +34,7 @@ const Layout = () => {
                     {isSignInClicked ? (
                         <div>
                             {!show && <SignIn handleSignIn={handleSignIn} handleLoading={handleLoading} handleViewPage={handleViewPage} />}
-                            {show && <Page />}
+                            {/* {show && <Page />} */}
                         </div>
                     ) : (
                         <SignUp handleSignIn={handleSignIn} />

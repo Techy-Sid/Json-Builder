@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import { styled, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import MuiDrawer from '@mui/material/Drawer';
@@ -16,12 +16,20 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
 import Badge from '@mui/material/Badge';
 import MenuItem from '@mui/material/MenuItem';
 import Avatar from '@mui/material/Avatar';
+import { Logo } from '../static/images/imgStore';
+import Page from '../container/page'
 import NotificationsIcon from '@mui/icons-material/Notifications';
+import DashboardIcon from '@mui/icons-material/Dashboard';
+import MailIcon from '@mui/icons-material/Mail';
+import DataObjectIcon from '@mui/icons-material/DataObject';
+import ForumIcon from '@mui/icons-material/Forum';
+import ChromeReaderModeIcon from '@mui/icons-material/ChromeReaderMode';
+import QuizIcon from '@mui/icons-material/Quiz';
+import FeedIcon from '@mui/icons-material/Feed';
+import SupportAgentIcon from '@mui/icons-material/SupportAgent';
 
 
 const drawerWidth = 240;
@@ -93,7 +101,38 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 
 const MenuDrawer = () => {
   const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
+  const [selectedMenu, setSelectedMenu] = useState('');
+
+  const drawerMainMenu = [{
+    menu: 'Project',
+    icon: 'DashboardIcon'
+  },
+  {
+    menu: 'Create JSON',
+    icon: 'DataObjectIcon'
+  },
+  {
+    menu: 'Testimonials',
+    icon: 'ForumIcon'
+  },
+  {
+    menu: 'Documentation',
+    icon: 'ChromeReaderModeIcon'
+  }]
+
+  const drawerSupportMenu = [{
+    menu: 'Q & A',
+    icon: 'QuizIcon'
+  },
+  {
+    menu: 'Feed',
+    icon: 'FeedIcon'
+  },
+  {
+    menu: 'Support',
+    icon: 'SupportAgentIcon'
+  }]
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -103,10 +142,35 @@ const MenuDrawer = () => {
     setOpen(false);
   };
 
+  const onSelectMenuItem = item => {
+    setSelectedMenu(item)
+  }
+
+  const getIcon = icon => {
+    switch (icon) {
+      case 'DashboardIcon':
+        return <DashboardIcon />
+      case 'DataObjectIcon':
+        return <DataObjectIcon />
+      case 'ForumIcon':
+        return <ForumIcon />
+      case 'ChromeReaderModeIcon':
+        return <ChromeReaderModeIcon />
+      case 'QuizIcon':
+        return <QuizIcon />
+      case 'FeedIcon':
+        return <FeedIcon />
+      case 'SupportAgentIcon':
+        return <SupportAgentIcon />
+      default:
+        return <span></span>
+    }
+  }
+
   return (
-    <Box sx={{ display: 'flex' }}>
-      <CssBaseline />
-      <AppBar position="fixed" open={open}>
+    <Box sx={{ display: 'flex' }} className="class-1">
+      <CssBaseline className="class-2" />
+      <AppBar position="fixed" open={open} className="class-3">
         <Toolbar>
           <IconButton
             color="inherit"
@@ -148,92 +212,75 @@ const MenuDrawer = () => {
           <Avatar alt="Remy Sharp" src={require('../static/images/alex.jpeg')} />
         </Toolbar>
       </AppBar>
-      <Drawer variant="permanent" open={open}>
-        <DrawerHeader>
+      <Drawer variant="permanent" open={open} className="class-4">
+        <DrawerHeader className="class-5">
+          {open && <Logo className="drawerLogo" />}
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
           </IconButton>
         </DrawerHeader>
-        <Divider />
-        <List>
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-            <ListItem key={text} disablePadding sx={{ display: 'block' }}>
-              <ListItemButton
-                sx={{
-                  minHeight: 48,
-                  justifyContent: open ? 'initial' : 'center',
-                  px: 2.5,
-                }}
-              >
-                <ListItemIcon
+        <Box className="menuItemContainer">
+          <Divider />
+          <List className="class-6">
+            {drawerMainMenu.map(({ menu, icon }, index) => (
+              <ListItem key={menu} disablePadding sx={{ display: 'block' }} className="class-7">
+                <ListItemButton
                   sx={{
-                    minWidth: 0,
-                    mr: open ? 3 : 'auto',
-                    justifyContent: 'center',
+                    minHeight: 48,
+                    justifyContent: open ? 'initial' : 'center',
+                    px: 2.5,
                   }}
+                  className="class-8"
+                  onClick={() => onSelectMenuItem(menu)}
                 >
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
-              </ListItemButton>
-            </ListItem>
-          ))}
-        </List>
-        <Divider />
-        <List>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
-            <ListItem key={text} disablePadding sx={{ display: 'block' }}>
-              <ListItemButton
-                sx={{
-                  minHeight: 48,
-                  justifyContent: open ? 'initial' : 'center',
-                  px: 2.5,
-                }}
-              >
-                <ListItemIcon
+                  <ListItemIcon
+                    sx={{
+                      minWidth: 0,
+                      mr: open ? 3 : 'auto',
+                      justifyContent: 'center',
+                    }}
+                    className="class-9"
+                  >
+                    {getIcon(icon)}
+                  </ListItemIcon>
+                  <ListItemText primary={menu} sx={{ opacity: open ? 1 : 0 }} className="class-10" />
+                </ListItemButton>
+              </ListItem>
+            ))}
+          </List>
+          <Divider />
+          <List>
+            {drawerSupportMenu.map(({ menu, icon}, index) => (
+              <ListItem key={menu} disablePadding sx={{ display: 'block' }}>
+                <ListItemButton
                   sx={{
-                    minWidth: 0,
-                    mr: open ? 3 : 'auto',
-                    justifyContent: 'center',
+                    minHeight: 48,
+                    justifyContent: open ? 'initial' : 'center',
+                    px: 2.5,
                   }}
+                  onClick={() => onSelectMenuItem(menu)}
                 >
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
-              </ListItemButton>
-            </ListItem>
-          ))}
-        </List>
+                  <ListItemIcon
+                    sx={{
+                      minWidth: 0,
+                      mr: open ? 3 : 'auto',
+                      justifyContent: 'center',
+                    }}
+                  >
+                    {getIcon(icon)}
+                  </ListItemIcon>
+                  <ListItemText primary={menu} sx={{ opacity: open ? 1 : 0 }} />
+                </ListItemButton>
+              </ListItem>
+            ))}
+          </List>
+        </Box>
       </Drawer>
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <DrawerHeader />
-        <Typography paragraph>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-          tempor incididunt ut labore et dolore magna aliqua. Rhoncus dolor purus non
-          enim praesent elementum facilisis leo vel. Risus at ultrices mi tempus
-          imperdiet. Semper risus in hendrerit gravida rutrum quisque non tellus.
-          Convallis convallis tellus id interdum velit laoreet id donec ultrices.
-          Odio morbi quis commodo odio aenean sed adipiscing. Amet nisl suscipit
-          adipiscing bibendum est ultricies integer quis. Cursus euismod quis viverra
-          nibh cras. Metus vulputate eu scelerisque felis imperdiet proin fermentum
-          leo. Mauris commodo quis imperdiet massa tincidunt. Cras tincidunt lobortis
-          feugiat vivamus at augue. At augue eget arcu dictum varius duis at
-          consectetur lorem. Velit sed ullamcorper morbi tincidunt. Lorem donec massa
-          sapien faucibus et molestie ac.
-        </Typography>
-        <Typography paragraph>
-          Consequat mauris nunc congue nisi vitae suscipit. Fringilla est ullamcorper
-          eget nulla facilisi etiam dignissim diam. Pulvinar elementum integer enim
-          neque volutpat ac tincidunt. Ornare suspendisse sed nisi lacus sed viverra
-          tellus. Purus sit amet volutpat consequat mauris. Elementum eu facilisis
-          sed odio morbi. Euismod lacinia at quis risus sed vulputate odio. Morbi
-          tincidunt ornare massa eget egestas purus viverra accumsan in. In hendrerit
-          gravida rutrum quisque non tellus orci ac. Pellentesque nec nam aliquam sem
-          et tortor. Habitant morbi tristique senectus et. Adipiscing elit duis
-          tristique sollicitudin nibh sit. Ornare aenean euismod elementum nisi quis
-          eleifend. Commodo viverra maecenas accumsan lacus vel facilisis. Nulla
-          posuere sollicitudin aliquam ultrices sagittis orci a.
-        </Typography>
+        <Box>
+          <Page menuItem={selectedMenu} />
+        </Box>
       </Box>
     </Box>
   );

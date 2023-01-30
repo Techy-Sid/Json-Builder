@@ -1,11 +1,14 @@
-import React, { useState, useCallback } from 'react'
+import React, { useState } from 'react'
+import QnA from './qna'
+import Project from './project'
 
-const Page = () => {
-    const [isLoading, setLoading] = useState(false)
+const Page = ({ menuItem }) => {
 
     return (
         <>
-            <div>Page</div>
+            <div>{menuItem}</div>
+            {menuItem === 'Q & A' && <QnA />}
+            {menuItem === 'Project' && <Project />}
         </>
     )
 }

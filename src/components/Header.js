@@ -4,7 +4,7 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-import {Logo} from '../static/images/imgStore';
+import { Logo } from '../static/images/imgStore';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import MenuDrawer from './Drawer'
 
@@ -30,7 +30,7 @@ const Header = ({ handleSignIn, isHeaderChange }) => {
       <Box sx={{ flexGrow: 1 }}>
         <AppBar position="static" color="primary" className='header'>
           <Toolbar>
-            <Logo />
+            <Logo className="logo" />
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
               <div id="slide">JSON BUILDER</div>
             </Typography>

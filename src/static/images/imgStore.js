@@ -1,2 +1,2 @@
-export const Logo = () => <img src={require('./logo.png')} alt="logo" className='logo' />
+export const Logo = ({ className }) => <img src={require('./logo.png')} alt="logo" className={className} />
 export const Loader = () => <img src={require('./loader.png')} alt="loader" className='loader' />

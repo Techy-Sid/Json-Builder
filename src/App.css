@@ -48,11 +48,11 @@
 }
 
 @-webkit-keyframes slide {
-  100% { left: 44%; }
+  100% { left: 45%; }
 }
 
 @keyframes slide {
-  100% { left: 44%; }
+  100% { left: 45%; }
 }
 
 .loader {
@@ -79,4 +79,39 @@
   25% { transform: rotate(150deg); }
   50% { transform: rotate(350deg); }
   100% { transform: rotate(0deg); }
+}
+
+.drawerLogo {
+  height: 100px;
+  width: 100px;
+  position: absolute;
+  top: 8px;
+  left: 20px;
+  border-radius: 50%;
+}
+
+.class-4 > div {
+  color: #fff;
+  background-color: #000;
+}
+
+.class-4 svg {
+  color: #fff;
+}
+
+.class-4 hr {
+  border: 1px solid;
+}
+
+.class-5 button {
+  margin-top: 21%;
+}
+
+.menuItemContainer {
+  margin-top: 12%;
+}
+
+.card:hover {
+  cursor: pointer;
+  box-shadow: 0 0 35px -2px rgb(0 0 0 / 20%);
 }

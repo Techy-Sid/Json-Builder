@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { styled, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import MuiDrawer from '@mui/material/Drawer';
-import MuiAppBar, { AppBarProps } from '@mui/material/AppBar';
+import MuiAppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import List from '@mui/material/List';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -122,7 +122,7 @@ const MenuDrawer = () => {
   }]
 
   const drawerSupportMenu = [{
-    menu: 'Q & A',
+    menu: 'FAQ',
     icon: 'QuizIcon'
   },
   {
@@ -171,7 +171,7 @@ const MenuDrawer = () => {
     <Box sx={{ display: 'flex' }} className="class-1">
       <CssBaseline className="class-2" />
       <AppBar position="fixed" open={open} className="class-3">
-        <Toolbar>
+        <Toolbar style={{ height: open ? '95px' : '65px'}}>
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -220,7 +220,7 @@ const MenuDrawer = () => {
           </IconButton>
         </DrawerHeader>
         <Box className="menuItemContainer">
-          <Divider />
+          {open && <Divider />}
           <List className="class-6">
             {drawerMainMenu.map(({ menu, icon }, index) => (
               <ListItem key={menu} disablePadding sx={{ display: 'block' }} className="class-7">
@@ -278,7 +278,7 @@ const MenuDrawer = () => {
       </Drawer>
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <DrawerHeader />
-        <Box>
+        <Box className="pages_parent">
           <Page menuItem={selectedMenu} />
         </Box>
       </Box>

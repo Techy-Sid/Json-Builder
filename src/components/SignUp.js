@@ -33,6 +33,7 @@ const SignUp = ({ handleSignIn }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
+    handleSignIn(true);
     console.log({
       firstName: data.get('firstName'),
       lastName: data.get('lastName'),

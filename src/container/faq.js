@@ -7,6 +7,7 @@ import StepContent from '@mui/material/StepContent';
 import Button from '@mui/material/Button';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
+import Divider from '@mui/material/Divider';
 
 const steps = [
     {
@@ -51,7 +52,7 @@ const steps = [
     },
 ];
 
-const QnA = () => {
+const FAQ = () => {
     const [activeStep, setActiveStep] = React.useState(0);
 
     const handleNext = () => {
@@ -68,6 +69,9 @@ const QnA = () => {
 
     return (
         <Box sx={{ width: '66%', margin: 'auto' }}>
+            <h1 className='mr-0'>Frequently Asked Questions</h1>
+            <Typography>Stuck on a particular problem? Check some of these common gotchas first in the FAQ.</Typography> <br />
+            <Divider /> <br />
             <Stepper activeStep={activeStep} orientation="vertical">
                 {steps.map((step, index) => (
                     <Step key={step.label}>
@@ -116,4 +120,4 @@ const QnA = () => {
     );
 }
 
-export default QnA
+export default FAQ

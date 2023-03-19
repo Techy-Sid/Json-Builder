@@ -82,8 +82,8 @@
 }
 
 .drawerLogo {
-  height: 100px;
-  width: 100px;
+  height: 75px;
+  width: 75px;
   position: absolute;
   top: 8px;
   left: 20px;
@@ -104,14 +104,40 @@
 }
 
 .class-5 button {
-  margin-top: 21%;
+  margin-top: 10%;
 }
 
 .menuItemContainer {
   margin-top: 12%;
 }
 
+.pages {
+  margin: 20px;
+}
+
 .card:hover {
   cursor: pointer;
   box-shadow: 0 0 35px -2px rgb(0 0 0 / 20%);
+}
+
+.mr-0 {
+  margin: 0
+}
+
+.signInSocailBlock {
+  margin-left: 16px !important;
+  margin-right: 16px !important;
+  margin-top: 0 !important;
+  padding: 16px !important;
+  margin-bottom: 8px !important;
+  text-align: center !important;
+  opacity: 1;
+  background: linear-gradient(195deg, #49a3f1, #1A73E8);
+  color: #344767;
+  border-radius: 0.5rem;
+  box-shadow: 0rem 0.25rem 1.25rem 0rem rgb(0 0 0 / 14%), 0rem 0.4375rem 0.625rem -0.3125rem rgb(0 187 212 / 40%);
+}
+
+.createJsonFooter {
+  margin-top: 15%;
 }
